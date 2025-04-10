@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DiagnoWise</title>
+  <style>
+    /* Reset some defaults */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 1.8em;
+    }
+    section {
+      padding: 20px 30px;
+      border-bottom: 1px solid #eee;
+    }
+    section:last-of-type {
+      border-bottom: none;
+    }
+    h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+    .result p {
+      margin-bottom: 8px;
+    }
+    .error {
+      color: #d9534f;
+      font-weight: bold;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      section {
+        padding: 15px 20px;
+      }
+      header h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>DiagnoWise</h1>
+    </header>
+    
+    <!-- Symptom-Based Diagnosis Section -->
+    <section id="diagnosis-section">
+      <h2>Symptom Diagnosis</h2>
+      <form id="diagnosis-form">
+        <label for="symptoms">Enter your symptoms (comma separated):</label>
+        <input type="text" id="symptoms" name="symptoms" placeholder="e.g., headache, fever, cough" required>
+        <button type="submit">Diagnose</button>
+      </form>
+      <div id="diagnosis-results"></div>
+    </section>
+    
+    <!-- Chatbot Section -->
+    <section id="chatbot-section">
+      <h2>Medical Chatbot</h2>
+      <form id="chatbot-form">
+        <label for="prompt">Ask your medical question:</label>
+        <input type="text" id="prompt" name="prompt" placeholder="e.g., What can I do to relieve a headache?" required>
+        <button type="submit">Ask</button>
+      </form>
+      <div id="chatbot-response"></div>
+    </section>
+  </div>
+
+  <script>
+    // Handle the diagnosis form submission
+    document.getElementById('diagnosis-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const symptoms = document.getElementById('symptoms').value;
+      const resultsDiv = document.getElementById('diagnosis-results');
+      resultsDiv.innerHTML = 'Loading...';
+      
+      try {
+        const response = await fetch('/diagnose', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: `symptoms=${encodeURIComponent(symptoms)}`
+        });
+        const data = await response.json();
+        if (data.error) {
+          resultsDiv.innerHTML = '<p class="error">' + data.error + '</p>';
+        } else {
+          let html = '<h3>Diagnosis Results:</h3>';
+          data.results.forEach(function(result) {
+            html += `<div class="result">
+                      <p><strong>Rank ${result.rank}:</strong> ${result.disease}</p>
+                      <p><strong>Confidence:</strong> ${result.confidence}</p>`;
+            if (result.description) {
+              html += `<p><strong>Description:</strong> ${result.description}</p>`;
+            }
+            if (result.precautions) {
+              html += `<p><strong>Precautions:</strong> ${result.precautions.join(', ')}</p>`;
+            }
+            html += `</div>`;
+          });
+          resultsDiv.innerHTML = html;
+        }
+      } catch (error) {
+        resultsDiv.innerHTML = '<p class="error">Error: ' + error.message + '</p>';
+      }
+    });
+
+    // Handle the chatbot form submission
+    document.getElementById('chatbot-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const prompt = document.getElementById('prompt').value;
+      const responseDiv = document.getElementById('chatbot-response');
+      responseDiv.innerHTML = 'Loading...';
+      
+      try {
+        const response = await fetch('/chatbot', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: `prompt=${encodeURIComponent(prompt)}`
+        });
+        const data = await response.json();
+        responseDiv.innerHTML = `<p>${data.response}</p>`;
+      } catch (error) {
+        responseDiv.innerHTML = '<p class="error">Error: ' + error.message + '</p>';
+      }
+    });
+  </script>
+</body>
+</html>
