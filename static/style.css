@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+header h1 {
+  font-size: 1.8em;
+}
+nav {
+  margin: 20px 0;
+}
+nav a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 15px;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+nav a.active {
+  font-weight: bold;
+}
+nav a.active:hover {
+  text-decoration: none;
+}
+nav a:visited {
+  color: #0056b3;
+}
+nav a:visited:hover {
+  color: #003d7a;
+}
+nav a:focus {
+  outline: 2px solid #0056b3;
+}
+nav a:focus:hover {
+  outline: 2px solid #003d7a;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+ul li {
+  margin: 10px 0;
+}
+ul li a {
+  text-decoration: none;
+  color: #007bff;
+}
+ul li a:hover {
+  text-decoration: underline;
+}
+
+section {
+  padding: 20px 30px;
+  border-bottom: 1px solid #eee;
+}
+section:last-of-type {
+  border-bottom: none;
+}
+h2 {
+  color: #007bff;
+  margin-bottom: 15px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
+.result {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+.result p {
+  margin-bottom: 8px;
+}
+.error {
+  color: #d9534f;
+  font-weight: bold;
+}
+.success {
+  color: #5cb85c;
+  font-weight: bold;
+}
+@media (max-width: 600px) {
+  section {
+    padding: 15px 20px;
+  }
+  header h1 {
+    font-size: 1.5em;
+  }
+}
