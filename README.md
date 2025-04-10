@@ -71,3 +71,7 @@ This project serves as a demonstration of an AI-powered medical assistant and hi
 * **First-Level Triage Bots:** Assisting in initial assessments and guiding users on seeking appropriate medical help.
 * **Hackathon Demos:** A compelling showcase of AI and machine learning in the healthcare domain.
 * **AI/ML Project Showcases:** Demonstrating the implementation of machine learning models and large language models for practical applications.
+
+## ✍🏻 Author
+
+This project is made by Sk Akib Ahammed [ahammedskakib@gmail.com]
