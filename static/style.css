@@ -27,50 +27,6 @@ header {
 header h1 {
   font-size: 1.8em;
 }
-nav {
-  margin: 20px 0;
-}
-nav a {
-  color: #007bff;
-  text-decoration: none;
-  margin: 0 15px;
-}
-nav a:hover {
-  text-decoration: underline;
-}
-nav a.active {
-  font-weight: bold;
-}
-nav a.active:hover {
-  text-decoration: none;
-}
-nav a:visited {
-  color: #0056b3;
-}
-nav a:visited:hover {
-  color: #003d7a;
-}
-nav a:focus {
-  outline: 2px solid #0056b3;
-}
-nav a:focus:hover {
-  outline: 2px solid #003d7a;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-ul li {
-  margin: 10px 0;
-}
-ul li a {
-  text-decoration: none;
-  color: #007bff;
-}
-ul li a:hover {
-  text-decoration: underline;
-}
-
 section {
   padding: 20px 30px;
   border-bottom: 1px solid #eee;
