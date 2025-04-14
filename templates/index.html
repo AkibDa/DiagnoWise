@@ -6,13 +6,13 @@
   <title>DiagnoWise</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./static/style.css">
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='DiagnoWise_favicon.png') }}">
-  <link rel="stylesheet" href="./static/style.css"/>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">HealthCare</a>
+      <a class="navbar-brand" href="#">DiagnoWise</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -22,42 +22,41 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#">About</a>
           </li>
+        </ul>
       </div>
     </div>
   </nav>
-<div class="jumbotron text-center">
+
+  <div class="jumbotron text-center">
     <h1 class="display-4">Welcome to DiagnoWise!</h1>
     <p class="lead">Your personal health assistant for symptom diagnosis and medical queries.</p>
     <hr class="my-4">
-</div>
-<br>
+  </div>
+
   <div class="container">
-    <header>
-      <h1>DiagnoWise</h1>
-    </header>
-    
     <section id="diagnosis-section">
-      <h2>Symptom Diagnosis</h2>
+      <h2><i class="fas fa-stethoscope"></i> Symptom Diagnosis</h2>
       <form id="diagnosis-form">
         <label for="symptoms">Enter your symptoms (comma separated):</label>
         <input type="text" id="symptoms" name="symptoms" placeholder="e.g., headache, fever, cough" required>
-        <button type="submit">Diagnose</button>
+        <button type="submit"><i class="fas fa-search"></i> Diagnose</button>
       </form>
       <div id="diagnosis-results"></div>
     </section>
     
     <section id="chatbot-section">
-      <h2>Medical Chatbot</h2>
+      <h2><i class="fas fa-robot"></i> Medical Chatbot</h2>
       <form id="chatbot-form">
         <label for="prompt">Ask your medical question:</label>
         <input type="text" id="prompt" name="prompt" placeholder="e.g., What can I do to relieve a headache?" required>
-        <button type="submit">Ask</button>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Ask</button>
       </form>
       <div id="chatbot-response"></div>
     </section>
   </div>
+
   <footer>
     <p>&copy; 2025 DiagnoWise | All rights reserved.</p>
   </footer>
